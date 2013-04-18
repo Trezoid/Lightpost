@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load markup %}
+{% block includes %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/posts.css"/>
+{% endblock %}
+{% block content %}
+<div class="post">
+    <h1>{{ post.title }}</h1>
+    <div class="posted">Posted {{ post.postedDate }} 
+        by <a href="/u/{{ post.postedBy.username }}">{{ post.postedBy.username }}</a> 
+        {% if post.postedBy == user %}
+        <a href="{{ post.url }}/edit">Edit</a>
+        {% endif %}
+    </div>
+    <div class="inner">{{ post.content|markdown }} </div>
+</div>
+{% endblock %}

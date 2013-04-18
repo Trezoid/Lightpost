@@ -1,0 +1,50 @@
+body{padding:0; margin: 0; top:0; position:relative;}
+.nav{
+    width: calc(100% - 10px);
+    width: -webkit-calc(100% - 10px);
+    background: linear-gradient(#333, #222);
+    background: -webkit-linear-gradient(#333, #222);
+    height: 32px;
+    padding: 5px;
+    box-shadow: 0px 1px 2px #555;
+}
+
+.logo{
+    color: #fff;
+    font-size: 26px;
+    line-height: 32px;
+    text-decoration: none;
+    font-family: 'Oleo script swash caps', cursive;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding-left: 10px;
+}
+
+.logo:hover{ color: #51CDf7;}
+
+.right{
+    float: right;
+    color: #fff;
+    line-height: 32px;
+    padding-right:10px;
+}
+.right .back{
+    color: #666;
+}
+.right a{
+    color: #FFF;
+}
+
+.right a:hover{
+    color: #51CDF7;
+}
+
+.content{
+    width: 100%;
+    max-width:960px;
+    margin: 0 auto;
+    font-family: 'Open Sans', verdana, sans-serif;
+    color: #222;
+    font-size: 16px;
+
+}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block includes %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/index.css"/>
+<link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/editor.css"/>
+{% endblock %}
+{% block content %}
+{% if not user.is_authenticated %}
+<div class="shout">
+    <h1>Welcome to Lightpost</h1>
+    <span class="subtitle">Really simple blogging</span>
+</div>
+<div class="about">
+    <div class="col tri">
+        <h2>Easy to use</h2>
+        <p>Write what you want to say using our simple to use editor, hit save. It's really that easy.</p>
+    </div>
+    <div class="col tri">
+        <h2>Easy to read</h2>
+        <p>What's the use of a great blog post if no-one can read it? All our themes are designed to be easy to read, no matter what you're reading on.
+    </div>
+    <div class="col tri">
+        <h2>Use it anywhere</h2>
+        <p>Want to write a post on your phone? We want to make that happen. Want to read something on the go? We've got you covered there too.
+    </div>
+</div>
+<div class="call">
+    <a href="/start" class="bigButton">Get Started Now!</a>
+</div>
+{% else %}
+<div class="editor">
+    <form action="/save" method="post" class="postForm">
+        {% csrf_token %}
+        <div class="title">
+            <input type="text" name="title" placeholder="title"></input>
+        </div>
+
+        <div class="content">
+            <div class="buttonBox">
+            </div>
+            <div class="formatBox" contenteditable="true"></div>
+            <textarea name="content" class="contentText"></textarea>
+        </div>
+        <div class="save">
+            <input type="submit" value="save"/>
+        </div>
+    </form>
+</div>
+<script>
+    var t = document.querySelector('.formatBox');
+    (function() {
+        t.style.height = (window.innerHeight - 270) + "px";
+
+    })()
+
+    window.onresize = function(event) {
+        t.style.height = (window.innerHeight - 270) + "px";
+    }
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/to-markdown.js"></script>
+<script src="{{ STATIC_URL }}js/showdown.js"></script>
+<script src="http://clubajax.org/files/lang/plain-text.js"></script>
+<script src="{{ STATIC_URL }}js/editor.js"></script>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load markup %}
+{% block includes %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/posts.css"/>
+{% endblock %}
+{% block content %}
+{% for post in posts %}
+<div class="post">
+    <a href="/u/{{ u.username}}/{{ post.url }}"><h1>{{ post.title }}</h1></a>
+    <div class="posted">Posted {{ post.postedDate }}</div>
+    <div class="inner">{{ post.content|markdown:"safe"|truncatewords_html:50 }} <a href="/u/{{ u.username }}/{{ post.url }}"> read more</a></div>
+</div>
+{% endfor %}
+{% endblock %}

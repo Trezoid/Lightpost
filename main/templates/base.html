@@ -1,0 +1,27 @@
+<!doctype HTML>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/base.css"/>
+    {% block includes %}
+    {% endblock %}
+</head>
+<body>
+    <div class="nav">
+        <span class="left">
+            <a href="/" class="logo">Lightpost</a>
+        </span>
+        <span class="right">
+            {% if user.is_authenticated %}
+            <a href="/u/{{ user.username }}">{{ user.username }}</a> | 
+            <a href="/logout">Logout</a>
+            {% else %}
+            <span class="back">already a member? <a href="/login">Login</a></span>
+            {% endif %}
+        </span>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+

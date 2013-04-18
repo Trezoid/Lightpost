@@ -1,0 +1,57 @@
+
+.auth{
+    z-index: 999;
+    position:fixed;
+    width: 400px;
+    height: 300px;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -200px;
+    padding: 20px;
+}
+
+.auth .error{
+    text-align: center;
+    color: #900;
+}
+ 
+.username, .password{
+    width: 350px;
+    margin: 5px auto;
+}
+
+.auth * label{
+    display:inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+.auth input:not(.login) {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.login{
+    position:relative;
+    display:block;
+    text-align: center;
+    line-height: 32px;
+    width: 200px;
+    padding-bottom: 5px;
+    height: 32px;
+    border-radius: 5px;
+    background: #469E1A;
+    background: linear-gradient(#4CBC14, #399B07);
+    background: -webkit-linear-gradient(#69D334, #469E1A);
+    color: #fff;
+    text-shadow: 0px -2px 0px #399B07;
+    font-size: 120%;
+    box-shadow: -0px -3px 0px #72CE44;
+    margin: 5px auto;
+    margin-top: 20px;
+    text-decoration: none;
+    border-width: 0;
+}

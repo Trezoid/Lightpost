@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block includes %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/fresh.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/editor.css"/>
+{% endblock %}
+{% block content %}
+<div class="fresh">
+    <h2> Welcome to the Lightpost Editor</h2>
+    <p> That's right, you get to dive straight in. We'll set your account up when you've finished this post.</p>
+    <p> You can always change this post later if you don't like it, so try it out!</p>
+</div>
+
+<div class="editor">
+    <form action="/fresh" method="post" class="postForm">
+        {% csrf_token %}
+        <div class="title">
+            <input type="text" name="title" placeholder="title"></input>
+        </div>
+
+        <div class="content">
+            <div class="buttonBox">
+            </div>
+            <div class="formatBox" contenteditable="true"></div>
+            <textarea name="content" class="contentText"></textarea>
+        </div>
+        <div class="save">
+            <input type="submit" value="save"/>
+        </div>
+    </form>
+</div>
+<script>
+    var t = document.querySelector('.formatBox');
+    var h = document.querySelector('.contentText');
+    (function() {
+        t.style.height = (window.innerHeight - 440) + "px";
+
+    })()
+
+    window.onresize = function(event) {
+        t.style.height = (window.innerHeight - 440) + "px";
+    }
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/to-markdown.js"></script>
+<script src="{{ STATIC_URL }}js/showdown.js"></script>
+<script src="http://clubajax.org/files/lang/plain-text.js"></script>
+<script src="{{ STATIC_URL }}js/editor.js"></script>
+<script src="{{ STATIC_URL }}js/fresh.js"></script>
+{% endblock %}

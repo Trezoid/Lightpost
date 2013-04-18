@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load markup %}
+{% block includes %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/editor.css"/>
+{% endblock %}
+{% block content %}
+<div class="editor">
+    <form action="edit" method="post" class="postForm">
+        {% csrf_token %}
+        <div class="title">
+            <input type="text" name="title" placeholder="title" value=" {{ post.title }}"></input>
+        </div>
+
+        <div class="content">
+            <div class="buttonBox">
+            </div>
+            <div class="formatBox" contenteditable="true">
+            {{ post.content|markdown }}
+            </div>
+            <textarea name="content" class="contentText">{{ post.content }}</textarea>
+                
+        </div>
+        <div class="save">
+            <input type="submit" value="save"/>
+        </div>
+    </form>
+</div>
+<script>
+    var t = document.querySelector('.formatBox');
+    (function() {
+        t.style.height = (window.innerHeight - 230) + "px";
+
+    })()
+
+    window.onresize = function(event) {
+        t.style.height = (window.innerHeight - 230) + "px";
+    }
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/to-markdown.js"></script>
+<script src="{{ STATIC_URL }}js/showdown.js"></script>
+<script src="http://clubajax.org/files/lang/plain-text.js"></script>
+<script src="{{ STATIC_URL }}js/editor.js"></script>
+{% endblock %}
