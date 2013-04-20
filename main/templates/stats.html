@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="counts">
+    <p>Number of users: {{ uC }}</p>
+    <p>Number of posts: {{ pC }}</p>
+</div>
+<div class="posts">
+    {% for p in posts %}
+    <p>{{ p.title }} by {{ p.postedBy }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

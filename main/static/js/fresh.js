@@ -24,8 +24,12 @@ $(document).ready(function() {
             '<div class="email"><label for="email">Email</label><input type="email" name="email"/></div>'+
             '<div class="save"><input class="innerSave" type="submit" value="Join!"/></div>');
         $('body').append(createUser); 
-        
+        console.log('click function!'); 
         $('.innerSave').click(function() {
+            var res = $.getJSON('new/'+$('.username input').val(), function(data){
+                console.log(data);
+            if(data.isUnique == true ){
+
             var u = $('.username input');
             $(u).attr('type', 'hidden');
             var p = $('.password input');
@@ -34,6 +38,12 @@ $(document).ready(function() {
             $(e).attr('type', 'hidden');
             $('.postForm').append(u, p, e);
             $('.postForm').submit();
+            } else { 
+                var error = document.createElement('p');
+                $(error).html('That username is already taken. Please choose a new one');
+                $('.username').prepend(error);
+            }
+            })
         });
         return false;
         }

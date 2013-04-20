@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^u/(?P<user>(\w+|[-]^[/]))/(?P<t>(\S+))/edit/?$', 'main.views.editPost'),
     url(r'^u/(?P<user>(\w+|[-]^[/]))/(?P<t>(\S+))/?$', 'main.views.singlePost'),
     url(r'^u/(?P<user>(\w+|[-]))/?$', 'main.views.posts'),
+    url(r'^new/(?P<newname>(\w+|[-]))/?$', 'main.views.new'),
+    url(r'^stats/?$', 'main.views.stats'),
     # url(r'^$', 'lightflight.views.home', name='home'),
     # url(r'^lightflight/', include('lightflight.foo.urls')),
 

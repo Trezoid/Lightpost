@@ -4,15 +4,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from main.models import post
 from django.shortcuts import render_to_response, redirect
+from django.http import HttpResponse
 from django.contrib.sites.models import Site
 from django.utils import timezone 
 from django.utils.text import slugify
+import json
 def index(request):
     return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
 def start(request):
     current_site = Site.objects.get_current()
-    
+
     return render_to_response('freshStart.html', {}, context_instance=RequestContext(request))
 
 def fresh(request):
@@ -64,3 +66,19 @@ def createPost(request):
 def leave(request):
     logout(request)
     return redirect('/')
+
+def stats(request):
+    if request.user.username == 'trezoid':
+        uCount = User.objects.all().count()
+        pCount = post.objects.all().count()
+
+        posts = post.objects.all()
+
+        return render_to_response('stats.html', {'uC' : uCount, 'pC':pCount, 'posts' : posts}, context_instance=RequestContext(request))
+
+    else:
+        return redirect('/')
+
+def new(request, newname):
+    isUser = User.objects.filter(username=newname).count() == 0
+    return HttpResponse(json.dumps({'isUnique':isUser}), mimetype="application/json")
